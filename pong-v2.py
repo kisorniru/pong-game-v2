@@ -36,7 +36,7 @@ ball.dy = -.2
 # Pen
 pen = turtle.Turtle()
 pen.speed(0)
-pen.color("white")
+pen.color("red")
 pen.penup()
 pen.goto(0, 250)
 pen.hideturtle()
@@ -83,9 +83,13 @@ while True:
         ball.dy *= -1
 
     if ball.ycor() < -290:
-        ball.sety(-290)
+        # ball.sety(-290)
+        ball.goto(0, 0)
         ball.dy *= -1
         os.system("aplay sound/finish.wav&")
+        pen.clear()
+        pen.color("red")
+        pen.write("Player : 0", align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() > 390:
         ball.setx(390)
@@ -102,4 +106,5 @@ while True:
         os.system("aplay sound/bounce.wav&")
         score += 1
         pen.clear()
+        pen.color("white")
         pen.write("Player : {}".format(score), align="center", font=("Courier", 24, "normal"))
