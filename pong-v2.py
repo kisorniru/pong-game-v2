@@ -11,6 +11,9 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Score
+score = 0
+
 # Paddle Info
 paddle = turtle.Turtle()
 paddle.speed(0)
@@ -29,6 +32,15 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = .2
 ball.dy = -.2
+
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.goto(0, 250)
+pen.hideturtle()
+pen.write("Player : 0", align="center", font=("Courier", 24, "normal"))
 
 # Function
 def paddle_right():
@@ -84,7 +96,10 @@ while True:
         ball.dx *= -1
 
     # Paddle and Ball Collisions
-    if (-240 > ball.ycor() > -250) and (paddle.xcor() + 90 > ball.xcor() > paddle.xcor() - 90):
+    if (-240 > ball.ycor() > -250) and (paddle.xcor() + 100 > ball.xcor() > paddle.xcor() - 100):
         ball.sety(-240)
         ball.dy *= -1
         os.system("aplay sound/bounce.wav&")
+        score += 1
+        pen.clear()
+        pen.write("Player : {}".format(score), align="center", font=("Courier", 24, "normal"))
